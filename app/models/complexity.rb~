@@ -1,0 +1,3 @@
+class Complexity < ActiveRecord::Base
+  attr_accessible :code, :planned_duration_max, :planned_duration_min, :points
+end

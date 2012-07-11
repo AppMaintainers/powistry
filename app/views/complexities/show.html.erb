@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Code:</b>
+  <%= @complexity.code %>
+</p>
+
+<p>
+  <b>Planned duration min:</b>
+  <%= @complexity.planned_duration_min %>
+</p>
+
+<p>
+  <b>Planned duration max:</b>
+  <%= @complexity.planned_duration_max %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%= @complexity.points %>
+</p>
+
+
+<%= link_to 'Edit', edit_complexity_path(@complexity) %> |
+<%= link_to 'Back', complexities_path %>
