@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :code %>
+    <%= f.input :code, :collection => %w(XS S M L)%>
     <%= f.input :planned_duration_min %>
     <%= f.input :planned_duration_max %>
     <%= f.input :points %>
