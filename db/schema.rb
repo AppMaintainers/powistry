@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711093315) do
+ActiveRecord::Schema.define(:version => 20120713103654) do
 
   create_table "complexities", :force => true do |t|
     t.string   "code"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(:version => 20120711093315) do
     t.integer  "end_complexity_id"
     t.string   "name"
     t.string   "description"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date     "start_date"
+    t.date     "end_date"
     t.string   "invoice_number"
     t.integer  "invested_hours"
     t.datetime "created_at",        :null => false

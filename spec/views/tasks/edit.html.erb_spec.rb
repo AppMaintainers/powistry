@@ -5,8 +5,8 @@ describe "tasks/edit" do
     @task = assign(:task, stub_model(Task,
       :user => nil,
       :project => nil,
-      :complexity_start => 1,
-      :complexity_end => 1,
+      :complexity => "",
+      :end_complexity_id => 1,
       :name => "MyString",
       :description => "MyString",
       :invoice_number => "MyString",
@@ -21,8 +21,8 @@ describe "tasks/edit" do
     assert_select "form", :action => tasks_path(@task), :method => "post" do
       assert_select "input#task_user", :name => "task[user]"
       assert_select "input#task_project", :name => "task[project]"
-      assert_select "input#task_complexity_start", :name => "task[complexity_start]"
-      assert_select "input#task_complexity_end", :name => "task[complexity_end]"
+      assert_select "input#task_complexity", :name => "task[complexity]"
+      assert_select "input#task_end_complexity_id", :name => "task[end_complexity_id]"
       assert_select "input#task_name", :name => "task[name]"
       assert_select "input#task_description", :name => "task[description]"
       assert_select "input#task_invoice_number", :name => "task[invoice_number]"

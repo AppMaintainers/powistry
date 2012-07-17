@@ -1,6 +1,6 @@
 <h1>Listing users</h1>
 
-<table>
+<table class = "table table-striped">
   <tr>
     <th>Name</th>
     <th>Monogram</th>
@@ -15,13 +15,13 @@
     <td><%= user.name %></td>
     <td><%= user.monogram %></td>
     <td><%= user.admin %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', user, class: "btn" %></td>
+    <td><%= link_to 'Edit', edit_user_path(user), class: "btn" %></td>
+    <td><%= link_to 'Destroy', user, class: "btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_path, class: "btn" %>

@@ -8,7 +8,7 @@ gem 'rails', '3.2.6'
 gem "simple_form"
 gem "devise"
 gem 'rails_admin'
-gem 'bootstrap'
+
 
 group :test do
   gem 'cucumber-rails'
@@ -32,6 +32,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier'
+  gem 'bootstrap-sass'
 end
 
 gem 'jquery-rails'

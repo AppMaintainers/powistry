@@ -33,7 +33,6 @@ GEM
     arel (3.0.2)
     bbenezech-nested_form (0.0.6)
     bcrypt-ruby (3.0.1)
-    bootstrap (0.0.1)
     bootstrap-sass (2.0.4.0)
     builder (3.0.0)
     capybara (1.1.2)
@@ -193,7 +192,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bootstrap
+  bootstrap-sass
   capybara
   coffee-rails
   cucumber-rails

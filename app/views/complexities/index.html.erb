@@ -1,6 +1,6 @@
 <h1>Listing complexities</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Code</th>
     <th>Planned duration min</th>
@@ -17,13 +17,13 @@
     <td><%= complexity.planned_duration_min %></td>
     <td><%= complexity.planned_duration_max %></td>
     <td><%= complexity.points %></td>
-    <td><%= link_to 'Show', complexity %></td>
-    <td><%= link_to 'Edit', edit_complexity_path(complexity) %></td>
-    <td><%= link_to 'Destroy', complexity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', complexity, class: "btn" %></td>
+    <td><%= link_to 'Edit', edit_complexity_path(complexity), class: "btn" %></td>
+    <td><%= link_to 'Destroy', complexity, class: "btn" ,method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Complexity', new_complexity_path %>
+<%= link_to 'New Complexity', new_complexity_path, class: "btn" %>

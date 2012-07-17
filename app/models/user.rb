@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
   
   # sets the monogram from the name  
   def set_monogram
-    self.monogram = name.split.map{|word| word.first}.join.upcase
+    self.monogram = name.split.map{|word| word.first}.join.upcase if monogram.blank?
   end
 end

@@ -1,6 +1,6 @@
 <h1>Listing projects</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Name</th>
     <th></th>
@@ -11,13 +11,13 @@
 <% @projects.each do |project| %>
   <tr>
     <td><%= project.name %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', project, class: "btn"  %></td>
+    <td><%= link_to 'Edit', edit_project_path(project), class: "btn"  %></td>
+    <td><%= link_to 'Destroy', project, class: "btn",  method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'New Project', new_project_path, class: "btn" %>

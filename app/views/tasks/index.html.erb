@@ -1,11 +1,11 @@
 <h1>Listing tasks</h1>
 
-<table>
+<table class = "table table-striped">
   <tr>
     <th>User</th>
     <th>Project</th>
     <th>Complexity</th>
-    <th>Complexity end</th>
+    <th>End complexity</th>
     <th>Name</th>
     <th>Description</th>
     <th>Start date</th>
@@ -29,9 +29,9 @@
     <td><%= task.end_date %></td>
     <td><%= task.invoice_number %></td>
     <td><%= task.invested_hours %></td>
-    <td><%= link_to 'Show', task %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', task, class: "btn" %></td>
+    <td><%= link_to 'Edit', edit_task_path(task), class: "btn" %></td>
+    <td><%= link_to 'Destroy', task, class: "btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
