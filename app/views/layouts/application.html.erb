@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Proba</title>
+    <title>Powestry</title>
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -16,12 +16,17 @@
           <%= link_to "Powestry", root_path, id: "logo" %>
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "Home",    root_path %></li>
-              <li><%= link_to "Users",    users_path %></li>
-              <li><%= link_to "Projects", projects_path %></li>
-              <li><%= link_to "Tasks",    tasks_path %></li>
-              <li><%= link_to "Sign in", new_user_session_path unless current_user %></li>
-              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to "Home",    root_path %></li>
+                <li><%= link_to "Users",    users_path %></li>
+                <li><%= link_to "Projects", projects_path %></li>
+                <li><%= link_to "Tasks",    tasks_path %></li>
+                <!-- <a> tag just for keep it vertically aligned don't know how to solve it -->
+                <li><a>Welcome <%= current_user.name %>! </a></li>
+                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
+              <% else %>
+                <li><%= link_to "Sign in", new_user_session_path unless current_user %></li>
+              <% end %>
             </ul>
           </nav>
         </div>

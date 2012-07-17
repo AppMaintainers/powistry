@@ -11,17 +11,6 @@ Powistry::Application.routes.draw do
 
   resources :projects
   
-#  devise_scope :user do 
-#    match '/sign_out',   to: 'devise/sessions#destroy'
-#    match '/sign_in',    to: 'devise/sessions#new'
-#  end
-  
-  # match '/sign_out',    to: 'devise/sessions#destroy'
-  
-  # match '/sign_in',    to: 'devise/sessions#new'
-  
-  
-  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

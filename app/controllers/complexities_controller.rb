@@ -1,4 +1,7 @@
 class ComplexitiesController < ApplicationController
+
+  before_filter :authenticate_user!
+
   # GET /complexities
   # GET /complexities.json
   def index
