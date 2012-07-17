@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713103654) do
+ActiveRecord::Schema.define(:version => 20120717162355) do
 
   create_table "complexities", :force => true do |t|
     t.string   "code"
@@ -50,8 +50,21 @@ ActiveRecord::Schema.define(:version => 20120713103654) do
     t.string   "name"
     t.string   "monogram"
     t.boolean  "admin"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "email",                  :default => "", :null => false
   end
+
+  add_index "users", ["name"], :name => "index_users_on_name", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

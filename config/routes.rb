@@ -1,4 +1,8 @@
 Powistry::Application.routes.draw do
+  root to: 'pages#home'
+  
+  devise_for :users
+
   resources :tasks
 
   resources :complexities
@@ -7,7 +11,16 @@ Powistry::Application.routes.draw do
 
   resources :projects
   
-  root to: 'home#index'
+#  devise_scope :user do 
+#    match '/sign_out',   to: 'devise/sessions#destroy'
+#    match '/sign_in',    to: 'devise/sessions#new'
+#  end
+  
+  # match '/sign_out',    to: 'devise/sessions#destroy'
+  
+  # match '/sign_in',    to: 'devise/sessions#new'
+  
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

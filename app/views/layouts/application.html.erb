@@ -20,7 +20,8 @@
               <li><%= link_to "Users",    users_path %></li>
               <li><%= link_to "Projects", projects_path %></li>
               <li><%= link_to "Tasks",    tasks_path %></li>
-              <li><%= link_to "Sign in", '#' %></li>
+              <li><%= link_to "Sign in", new_user_session_path unless current_user %></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             </ul>
           </nav>
         </div>
@@ -29,6 +30,11 @@
     <div class="container">
       <%= yield %>
     </div>
+    
+    <!-- For devise setup -->
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
   </body>
 </html>
 
