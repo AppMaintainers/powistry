@@ -15,13 +15,16 @@ Powistry::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
-
+  
+  #???????????????????????????????????????????????????????
+  config.assets.compile = true
+  ########################################xx
+  
   # Generate digests for assets URLs
   config.assets.digest = true
   
   # Devise setup for heroku ???
-  config.action_mailer.default_url_options = { :host => 'http://falling-flower-6793.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'powistry-staging.herokuapp.com' }
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
