@@ -8,6 +8,7 @@ gem 'rails', '3.2.6'
 gem "simple_form"
 gem "devise"
 gem 'rails_admin'
+gem 'cancan'
 
 
 group :test do
