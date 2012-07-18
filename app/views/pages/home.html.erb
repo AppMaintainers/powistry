@@ -1,6 +1,8 @@
 <div class="center hero-unit">
   <h1>Powestry</h1>
   <p>Welcome to the Powestry! This app lets you easily register your team's performance and efficiency.</p>
-  <%= link_to "Sign up", new_user_registration_path, class: "btn btn-large btn-primary" unless current_user %> or 
-  <%= link_to "Sign in", new_user_session_path, class: "btn btn-large btn-primary" unless current_user %>
+  <% if !current_user %>
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-large btn-primary" %> or 
+    <%= link_to "Sign in", new_user_session_path, class: "btn btn-large btn-primary" %>
+  <% end %>
 </div>

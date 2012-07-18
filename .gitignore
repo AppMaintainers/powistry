@@ -8,6 +8,9 @@
 /log/*.log
 /tmp
 
+# Ignore public/assets
+/public/assets
+
 # Ignore other unneeded files.
 doc/
 *.swp
