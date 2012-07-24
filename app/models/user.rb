@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   has_many :tasks
   
   validates :name, :presence => true
-  before_validation :set_monogram
-  
+  before_validation :set_monogram 
+    
   # sets the monogram from the name  
   def set_monogram
     self.monogram = name.split.map{|word| word.first}.join.upcase if monogram.blank?

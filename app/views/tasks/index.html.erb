@@ -19,10 +19,10 @@
 
 <% @tasks.each do |task| %>
   <tr>
-    <td><%= task.user.name %></td>
+    <td><%= task.user.name %></td> 
     <td><%= task.project.name %></td>
     <td><%= task.complexity.code %></td>
-    <td><%= task.end_complexity.code %></td>
+    <td><%= task.end_complexity.code if task.end_complexity %></td>
     <td><%= task.name %></td>
     <td><%= task.description %></td>
     <td><%= task.start_date %></td>
