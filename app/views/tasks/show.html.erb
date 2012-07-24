@@ -17,7 +17,7 @@
 
 <p>
   <b>End complexity:</b>
-  <%= @task.end_complexity.code if @task.end_complexity %>
+  <%= @task.end_complexity.try(:code) %>
 </p>
 
 <p>
