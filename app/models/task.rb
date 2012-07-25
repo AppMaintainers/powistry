@@ -3,6 +3,7 @@ class Task < ActiveRecord::Base
   belongs_to :project
   belongs_to :complexity
   belongs_to :end_complexity, :class_name => "Complexity"
+  has_many :estimations
   
   validates :user, :project, :complexity, :name, :start_date, :presence => true
   validates :invested_hours, :numericality => true, :allow_nil => true

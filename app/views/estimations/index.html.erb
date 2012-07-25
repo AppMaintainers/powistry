@@ -1,0 +1,27 @@
+<h1>Listing estimations</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>User</th>
+    <th>Task</th>
+    <th>Complexity</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @estimations.each do |estimation| %>
+  <tr>
+    <td><%= estimation.user.name %></td>
+    <td><%= estimation.task.name %></td>
+    <td><%= estimation.complexity.code %></td>
+    <td><%= link_to 'Show', estimation, class: "btn" %></td>
+    <td><%= link_to 'Edit', edit_estimation_path(estimation), class: "btn" %></td>
+    <td><%= link_to 'Destroy', estimation, class: "btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Estimation', new_estimation_path, class: "btn" %>

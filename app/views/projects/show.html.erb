@@ -3,6 +3,11 @@
 <p>
   <b>Name:</b>
   <%= @project.name %>
+  <br>
+  <b>Users:</b>
+  <% @project.users.each do |u| %>
+  <%= u.name %>
+  <% end %>
 </p>
 
 

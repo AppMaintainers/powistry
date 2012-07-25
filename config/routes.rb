@@ -1,4 +1,6 @@
 Powistry::Application.routes.draw do
+  resources :estimations
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   root to: 'pages#home'

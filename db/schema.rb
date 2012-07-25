@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718140612) do
+ActiveRecord::Schema.define(:version => 20120725104402) do
 
   create_table "complexities", :force => true do |t|
     t.string   "code"
@@ -22,11 +22,30 @@ ActiveRecord::Schema.define(:version => 20120718140612) do
     t.datetime "updated_at",           :null => false
   end
 
+  create_table "estimations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.integer  "complexity_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "estimations", ["complexity_id"], :name => "index_estimations_on_complexity_id"
+  add_index "estimations", ["task_id"], :name => "index_estimations_on_task_id"
+  add_index "estimations", ["user_id"], :name => "index_estimations_on_user_id"
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "projects_users", :id => false, :force => true do |t|
+    t.integer "user_id",    :null => false
+    t.integer "project_id", :null => false
+  end
+
+  add_index "projects_users", ["user_id", "project_id"], :name => "index_projects_users_on_user_id_and_project_id", :unique => true
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"

@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
     
   attr_accessible :admin, :monogram, :name
   has_many :tasks
+  has_many :estimations
+  has_and_belongs_to_many :projects
   
   validates :name, :presence => true
   before_validation :set_monogram 

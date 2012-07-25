@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @estimation.user.name %>
+</p>
+
+<p>
+  <b>Task:</b>
+  <%= @estimation.task.name %>
+</p>
+
+<p>
+  <b>Complexity:</b>
+  <%= @estimation.complexity.code %>
+</p>
+
+
+<%= link_to 'Edit', edit_estimation_path(@estimation) %> |
+<%= link_to 'Back', estimations_path %>
