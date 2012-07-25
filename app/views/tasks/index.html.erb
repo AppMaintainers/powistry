@@ -31,11 +31,13 @@
     <td><%= task.invested_hours %></td>
     <td><%= link_to 'Show', task, class: "btn" %></td>
     <td><%= link_to 'Edit', edit_task_path(task), class: "btn" %></td>
-    <td><%= link_to 'Destroy', task, class: "btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if can? :destroy, @task %>
+      <td><%= link_to 'Destroy', task, class: "btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to 'New Task', new_task_path, class: "btn" %>

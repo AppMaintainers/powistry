@@ -16,12 +16,17 @@
     <td><%= user.monogram %></td>
     <td><%= user.admin %></td>
     <td><%= link_to 'Show', user, class: "btn" %></td>
-    <td><%= link_to 'Edit', edit_user_path(user), class: "btn" %></td>
-    <td><%= link_to 'Destroy', user, class: "btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if (user == current_user) || current_user.admin %>
+      <td><%= link_to 'Edit', edit_user_path(user), class: "btn" %></td>
+    <% end %>
+    <% if can? :destroy, @user %>
+      <td><%= link_to 'Destroy', user, class: "btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New User', new_user_path, class: "btn" %>
+<% if can? :create, @user%>
+  <%= link_to 'New User', new_user_path, class: "btn" %>
+<% end %>

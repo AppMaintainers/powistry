@@ -14,12 +14,17 @@
     <td><%= project.name %></td>
     <td><%= link_to 'Show tasks', project_tasks_path(project) %></td>
     <td><%= link_to 'Show', project, class: "btn"  %></td>
-    <td><%= link_to 'Edit', edit_project_path(project), class: "btn"  %></td>
-    <td><%= link_to 'Destroy', project, class: "btn",  method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <% if can? :update, @project %>
+      <td><%= link_to 'Edit', edit_project_path(project), class: "btn"  %></td>
+    <% end %>
+    <% if can? :destroy, @project %>
+      <td><%= link_to 'Destroy', project, class: "btn",  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr> 
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Project', new_project_path, class: "btn" %>
+<% if can? :create, @project %>
+  <%= link_to 'New Project', new_project_path, class: "btn" %>
+<% end %>
