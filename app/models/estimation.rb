@@ -4,7 +4,7 @@ class Estimation < ActiveRecord::Base
   belongs_to :complexity
   # attr_accessible :title, :body
   
-  validates :user, :task, :complexity, :presence => true
+  validates :user, :task, :presence => true
   
-  attr_accessible :user_id, :task_id, :complexity_id
+  attr_accessible :user_id, :task_id, :complexity_id, :user, :task, :complexity
 end

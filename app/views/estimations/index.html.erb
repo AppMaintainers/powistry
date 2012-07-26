@@ -14,7 +14,7 @@
   <tr>
     <td><%= estimation.user.name %></td>
     <td><%= estimation.task.name %></td>
-    <td><%= estimation.complexity.code %></td>
+    <td><%= estimation.complexity.try(:code) %></td>
     <td><%= link_to 'Show', estimation, class: "btn" %></td>
     <td><%= link_to 'Edit', edit_estimation_path(estimation), class: "btn" %></td>
     <td><%= link_to 'Destroy', estimation, class: "btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>

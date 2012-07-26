@@ -23,7 +23,7 @@
                 <li><%= link_to "All Tasks",    tasks_path %></li>
                 <li><%= link_to "All Complexities", complexities_path %></li>
                 <!-- <a> tag just for keep it vertically aligned don't know how to solve it -->
-                <li><a>Welcome <%= current_user.name %>! </a></li>
+                <li class="navbar-text"> Welcome <%= current_user.name %>! </li>
                 <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
               <% else %>
                 <li><%= link_to "Sign in", new_user_session_path unless current_user %></li>

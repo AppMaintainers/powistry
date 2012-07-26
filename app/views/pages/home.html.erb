@@ -3,6 +3,16 @@
   <p>Welcome to the Powistry! This app lets you easily register your team's performance and efficiency.</p>
   <% if !current_user %>
     <%= link_to "Sign up", new_user_registration_path, class: "btn btn-large btn-primary" %> or 
-    <%= link_to "Sign in", new_user_session_path, class: "btn btn-large btn-primary" %>
+    <%= link_to "Sign in", new_user_session_path, class: "btn btn-large btn-primary" %>    
+  <% elsif current_user.estimations.map{|e| e.complexity}.include?(nil) %>
+    <div class="alert alert-info">
+      You have unfilled estimations on the following tasks:
+      <% current_user.estimations.each do |est| %>
+        <% if !est.complexity.nil? %>
+          <%= est.task.name %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= link_to "OK. I'll do it!", estimations_path, class: "btn pull-right" %>
   <% end %>
 </div>
