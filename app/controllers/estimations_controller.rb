@@ -21,17 +21,6 @@ class EstimationsController < ApplicationController
     end
   end
 
-  # GET /estimations/new
-  # GET /estimations/new.json
-  def new
-    @estimation = Estimation.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @estimation }
-    end
-  end
-
   # GET /estimations/1/edit
   def edit
     @estimation = Estimation.find(params[:id])

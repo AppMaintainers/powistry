@@ -10,13 +10,13 @@ class Task < ActiveRecord::Base
   
   attr_accessible :user_id, :project_id, :complexity_id, :complexity,
    :description, :end_complexity_id, :end_date, :invested_hours, 
-   :invoice_number, :name, :start_date
+   :invoice_number, :name, :start_date, :id
    
-  after_save :create_estimations_for_users_on_project
+  after_create :create_estimations_for_users_on_project
   
   def create_estimations_for_users_on_project
     self.project.users.each do |user|
-      Estimation.create(:user => user, :task => self)
+      Estimation.find_or_create_by_user_id_and_task_id(user.id, self.id)
     end
   end
    

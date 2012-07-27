@@ -11,7 +11,7 @@
     <th></th>
   </tr>
 
-<% @complexities.each do |complexity| %>
+<% @complexities.sort_by{|c| c[:points]}.each do |complexity| %>
   <tr>
     <td><%= complexity.code %></td>
     <td><%= complexity.planned_duration_min %></td>

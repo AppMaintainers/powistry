@@ -2,26 +2,26 @@
 
 <table class="table table-striped">
   <tr>
-    <th>User</th>
+    <th>Project</th>
     <th>Task</th>
+    <th>Description</th>
     <th>Complexity</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @estimations.each do |estimation| %>
-  <tr>
-    <td><%= estimation.user.name %></td>
-    <td><%= estimation.task.name %></td>
-    <td><%= estimation.complexity.try(:code) %></td>
-    <td><%= link_to 'Show', estimation, class: "btn" %></td>
-    <td><%= link_to 'Edit', edit_estimation_path(estimation), class: "btn" %></td>
-    <td><%= link_to 'Destroy', estimation, class: "btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <% if estimation.user == current_user %>
+    <tr>
+      <td><%= estimation.task.project.name %></td>
+      <td><%= estimation.task.name %></td>
+      <td><%= estimation.task.description %></td>
+      <td><%= estimation.complexity.try(:code) %></td>
+      <td><%= link_to 'Show', estimation, class: "btn" %></td>
+      <td><%= link_to 'Edit', edit_estimation_path(estimation), class: "btn" %></td>
+    </tr>
+  <% end %>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Estimation', new_estimation_path, class: "btn" %>

@@ -19,7 +19,7 @@
 
 <% @tasks.each do |task| %>
   <tr>
-    <td><%= task.user.name %></td> 
+    <td><%= task.user.try(:name) %></td> 
     <td><%= task.project.name %></td>
     <td><%= task.complexity.try(:code) %></td>
     <td><%= task.end_complexity.try(:code) %></td>

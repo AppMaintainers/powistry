@@ -2,8 +2,12 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :user %>
-    <%= f.association :task %>
+    <label>Project</label>
+    <%= @estimation.task.project.name %>
+    <label>Task</label>
+    <%= @estimation.task.name %>
+    <label>Description</label>
+    <%= @estimation.task.description %>
     <%= f.association :complexity %>
   </div>
 

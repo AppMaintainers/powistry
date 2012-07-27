@@ -8,7 +8,7 @@
     <div class="alert alert-info">
       You have unfilled estimations on the following tasks:
       <% current_user.estimations.each do |est| %>
-        <% if !est.complexity.nil? %>
+        <% if est.complexity.nil? %>
           <%= est.task.name %>
         <% end %>
       <% end %>
