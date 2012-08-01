@@ -8,4 +8,4 @@ ActionMailer::Base.smtp_settings = {
 }
 ActionMailer::Base.delivery_method = :smtp
 
-ActionMailer::Base.default_url_options[:host] = "http://powistry-staging.herokuapp.com"
+ActionMailer::Base.default_url_options[:host] = "powistry-staging.herokuapp.com"
