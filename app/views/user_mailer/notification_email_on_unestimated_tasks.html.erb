@@ -9,7 +9,7 @@
       it seems that you haven't given estimations on the following tasks:
     </p>
     <ul>
-      <% user.estimations.each do |est| %>
+      <% @user.estimations.each do |est| %>
         <% if est.complexity.nil? %>
           <li><%= est.task.name %><li>
         <% end %>
