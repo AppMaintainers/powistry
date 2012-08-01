@@ -1,9 +1,8 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "info@powistry.com"
   
-  def welcome_email(user)
+  def notification_email_on_unestimated_tasks(user)
     @user = user
-    #@url  = "http://example.com/login"
-    mail(:to => user.email, :subject => "Welcome to My Awesome Site")
+    mail(:to => user.email, :subject => "You have tasks to give estimations on")
   end
 end
