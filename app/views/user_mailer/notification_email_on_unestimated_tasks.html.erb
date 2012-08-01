@@ -6,12 +6,12 @@
   <body>
     <h1>Hi, <%= @user.name %>,</h1>
     <p>
-      it seems that you haven't given estimations on the following tasks:
+      it seems that you haven't given estimations on the following tasks yet:
     </p>
     <ul>
       <% @user.estimations.each do |est| %>
         <% if est.complexity.nil? %>
-          <li><%= est.task.name %><li>
+          <li><%= link_to est.task.name, estimation_path %></li>
         <% end %>
       <% end %>
     </ul>
