@@ -4,7 +4,7 @@
   <tr>
     <th>User</th>
     <th>Project</th>
-    <th>Complexity</th>
+    <th>Average Complexity</th>
     <th>End complexity</th>
     <th>Name</th>
     <th>Description</th>
@@ -21,7 +21,7 @@
   <tr>
     <td><%= task.user.try(:name) %></td> 
     <td><%= task.project.name %></td>
-    <td><%= task.complexity.try(:code) %></td>
+    <td><%= get_average_points(task.estimations)%></td>
     <td><%= task.end_complexity.try(:code) %></td>
     <td><%= task.name %></td>
     <td><%= task.description %></td>

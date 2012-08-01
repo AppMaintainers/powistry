@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
   belongs_to :project
   belongs_to :complexity
   belongs_to :end_complexity, :class_name => "Complexity"
-  has_many :estimations
+  has_many :estimations, :dependent => :destroy
   
   validates :project, :name, :start_date, :presence => true
   validates :invested_hours, :numericality => true, :allow_nil => true
@@ -19,5 +19,9 @@ class Task < ActiveRecord::Base
       Estimation.find_or_create_by_user_id_and_task_id(user.id, self.id)
     end
   end
+  
+  scope :after_date, lambda{|date| where("start_date >= ?", date)}
+  scope :before_date, lambda{|date| where("end_date <= ?", date)}
+  scope :with_invoice_number, lambda{|invnum| where("invoice_number = ?", invnum)}
    
 end

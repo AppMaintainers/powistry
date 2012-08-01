@@ -3,12 +3,12 @@
 
   <div class="form-inputs">
     <label>Project</label>
-    <%= @estimation.task.project.name %>
+    <p><%= @estimation.task.project.name %></p>
     <label>Task</label>
-    <%= @estimation.task.name %>
+    <p><%= @estimation.task.name %></p>
     <label>Description</label>
-    <%= @estimation.task.description %>
-    <%= f.association :complexity %>
+    <p><%= @estimation.task.description %></p>
+    <%= f.association :complexity, :collection => Complexity.all(:order => 'points')%>
   </div>
 
   <div class="form-actions">

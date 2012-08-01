@@ -1,4 +1,8 @@
 Powistry::Application.routes.draw do
+  get "queries/index"
+
+  get "queries/search"
+
   resources :estimations
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'

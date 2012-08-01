@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <b>Complexity:</b>
-  <%= @task.complexity.try(:code) %>
+  <b>Average Complexity:</b>
+  <%= get_average_points(@task.estimations) %>
 </p>
 
 <p>
