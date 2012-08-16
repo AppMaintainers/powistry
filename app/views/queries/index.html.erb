@@ -1,3 +1,5 @@
+<script src="/assets/jquery-ui.js" type="text/javascript"></script>
+
 <h1>Queries</h1>
 
 <%= search_form_for @search, :url => { :action => :index }, :method => "get" do |f| %>
@@ -13,9 +15,18 @@
       <% end -%>
     <% end -%>
   </div>
+  
   <div class="field">
     <h3>Invoice numbers</h3>
     <%= select_tag 'q[invoice_number_eq_any][]', options_for_select(Task.where("invoice_number != ?", "").collect{ |t| t.invoice_number }),{:multiple => :multiple, :size => 10, :include_blank => :true} %>
+  </div>
+  
+  <div class="field">
+    <h3>Between</h3>
+    <%= f.label :start_date_gteq, "Start date: " %> 
+    <%= f.text_field :start_date_gteq, :class => "datepicker_for_query" %>
+    <%= f.label :start_date_lteq, "End date: " %> 
+    <%= f.text_field :start_date_lteq, :class => "datepicker_for_query" %>
   </div>
   
   <div class="action"><%= f.submit %></div>
