@@ -9,6 +9,7 @@ gem "simple_form"
 gem "devise"
 gem 'rails_admin'
 gem 'cancan'
+gem 'ransack'
 
 
 group :test do

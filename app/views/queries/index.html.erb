@@ -1,2 +1,52 @@
-<h1>Queries#index</h1>
-<p>Find me in app/views/queries/index.html.erb</p>
+<h1>Queries</h1>
+
+<%= search_form_for @search, :url => { :action => :index }, :method => "get" do |f| %>
+  <div class="field">
+    <h3>Users</h3>
+    <% User.all.each do |u| -%>
+      <% if params.try(:[],:q).try(:has_key?, :user_id_eq_any) -%>
+        <%= check_box_tag "q[user_id_eq_any][]", u.id, params[:q][:user_id_eq_any].include?(u.id.to_s) %>
+        <%= u.name -%> <br/>
+      <% else -%>
+        <%= check_box_tag "q[user_id_eq_any][]", u.id %>
+        <%= u.name -%> <br/>
+      <% end -%>
+    <% end -%>
+  </div>
+  <div class="field">
+    <h3>Invoice numbers</h3>
+    <%= select_tag 'q[invoice_number_eq_any][]', options_for_select(Task.where("invoice_number != ?", "").collect{ |t| t.invoice_number }),{:multiple => :multiple, :size => 10, :include_blank => :true} %>
+  </div>
+  
+  <div class="action"><%= f.submit %></div>
+<% end -%>
+
+<table class = "table table-striped">
+  <tr>
+    <th>User</th>
+    <th>Project</th>
+    <th>Average Complexity</th>
+    <th>End complexity</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Invoice number</th>
+    <th>Invested hours</th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= task.user.try(:name) %></td> 
+    <td><%= task.project.name %></td>
+    <td><%= get_average_points(task.estimations)%></td>
+    <td><%= task.end_complexity.try(:code) %></td>
+    <td><%= task.name %></td>
+    <td><%= task.description %></td>
+    <td><%= task.start_date %></td>
+    <td><%= task.end_date %></td>
+    <td><%= task.invoice_number %></td>
+    <td><%= task.invested_hours %></td>
+  </tr>
+<% end %>
+</table>
