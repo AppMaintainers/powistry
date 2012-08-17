@@ -13,11 +13,11 @@ module TasksHelper
   end
   
   def user_sum_points(user)
-    @tasks.where("user_id == ?", user.id).map{|t| get_average_points(t.estimations)}.sum
+    @tasks.where("user_id = ?", user.id).map{|t| get_average_points(t.estimations)}.sum
   end
   
   def user_sum_inv_hours(user)
-    @tasks.where("user_id == ?", user.id).map{|t| t.invested_hours}.compact.sum
+    @tasks.where("user_id = ?", user.id).map{|t| t.invested_hours}.compact.sum
   end
 
 end
