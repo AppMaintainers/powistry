@@ -32,7 +32,30 @@
   <div class="action"><%= f.submit %></div>
 <% end -%>
 
-<table class = "table table-striped">
+<div>
+  <h3>Summary</h3>
+  <table class = "table table-striped">
+  <tr>
+    <th>User</th>
+    <th>Earned Points</th>
+    <th>Invested hours</th>
+    <th>Planned hours min</th>
+    <th>Planned hours max</th>
+  </tr>
+  
+  <% @tasks.collect{|t| t.user}.uniq.compact.each do |u| -%>
+    <tr>
+      <td><%= u.name %></td>
+      <td><div class="pointsBars"><%= content_tag(:span, user_sum_points(u), :class => :t1, :style => "width: #{user_sum_points(u)/max_pts(@tasks)*100}%") %></div></td>
+      <td><%= user_sum_inv_hours(u) %></td>
+    </tr>
+  <% end -%>
+  </table>
+</div>
+
+<div>
+  <h3>Tasks</h3>
+  <table class = "table table-striped">
   <tr>
     <th>User</th>
     <th>Project</th>
@@ -61,3 +84,5 @@
   </tr>
 <% end %>
 </table>
+</div>
+
