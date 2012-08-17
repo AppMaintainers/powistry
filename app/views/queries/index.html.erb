@@ -39,8 +39,8 @@
     <th>User</th>
     <th>Earned Points</th>
     <th>Invested hours</th>
-    <th>Planned hours min</th>
-    <th>Planned hours max</th>
+    <th>Estimated sum hours min</th>
+    <th>Estimated sum hours max</th>
   </tr>
   
   <% @tasks.collect{|t| t.user}.uniq.compact.each do |u| -%>
@@ -48,6 +48,8 @@
       <td><%= u.name %></td>
       <td><div class="pointsBars"><%= content_tag(:span, user_sum_points(u), :class => :t1, :style => "width: #{user_sum_points(u)/max_pts(@tasks)*100}%") %></div></td>
       <td><%= user_sum_inv_hours(u) %></td>
+      <td><%= user_sum_min_hours(u) %></td>
+      <td><%= user_sum_max_hours(u) %></td>
     </tr>
   <% end -%>
   </table>
