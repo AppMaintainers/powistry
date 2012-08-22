@@ -19,7 +19,12 @@
 
 <% @tasks.each do |task| %>
   <tr>
-    <td><%= task.user.try(:name) %></td> 
+    <% unless task.user.nil? -%>
+      <td class="avatar_name"><%= image_tag avatar_url(task.user,40) %> <br/>
+      <%= task.user.name.split.first %></td>
+    <% else -%>
+      <td></td>
+    <% end -%>
     <td><%= task.project.name %></td>
     <td><%= get_average_points(task.estimations)%></td>
     <td><%= task.end_complexity.try(:code) %></td>

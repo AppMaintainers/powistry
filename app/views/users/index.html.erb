@@ -2,6 +2,7 @@
 
 <table class = "table table-striped">
   <tr>
+    <th>Avatar</th>
     <th>Name</th>
     <th>Monogram</th>
     <th>Admin</th>
@@ -12,6 +13,8 @@
 
 <% @users.each do |user| %>
   <tr>
+    <td class="avatar_name"><%= image_tag avatar_url(user,40) %> <br/>
+    <%= user.name.split.first %></td>
     <td><%= user.name %></td>
     <td><%= user.monogram %></td>
     <td><%= user.admin %></td>

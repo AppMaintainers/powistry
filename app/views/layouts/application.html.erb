@@ -5,6 +5,14 @@
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Oregano' rel='stylesheet' type='text/css'>
+    <script src="/assets/jquery-ui.js" type="text/javascript"></script>
+    <script src="/assets/bootstrap-tooltip.js" type="text/javascript"></script>
+    <script>
+      $(function(){
+        $("[rel=tooltip]").tooltip();
+      });
+    </script>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -18,15 +26,20 @@
             <ul class="nav pull-right">
               <% if user_signed_in? %>
                 <li><%= link_to "Home",    root_path %></li>
-                <li><%= link_to "Users",    users_path %></li>
                 <li><%= link_to "My Projects", projects_path %></li>
                 <li><%= link_to "My Estimations", estimations_path %></li>
                 <li><%= link_to "All Tasks",    tasks_path %></li>
-                <li><%= link_to "All Complexities", complexities_path %></li>
                 <li><%= link_to "Queries", queries_index_path %></li>
-                <!-- <a> tag just for keep it vertically aligned don't know how to solve it -->
-                <li class="navbar-text"> Welcome <%= current_user.name %>! </li>
-                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Welcome <%= current_user.name %>!
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "My profile", user_path(current_user) %></li>
+                    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
+                  </ul>
+                </li>
               <% else %>
                 <li><%= link_to "Sign in", new_user_session_path unless current_user %></li>
               <% end %>
