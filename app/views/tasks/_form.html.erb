@@ -1,9 +1,9 @@
-<%= simple_form_for(@task) do |f| %>
+<%= simple_form_for([@project, @task]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.association :user %>
-    <%= f.association :project %>
+    <%#= f.association :project %>
     <% title = "<table><tr><th>Complexity:</th><th>Planned duration min:</th><th>Planned duration max:</th><th>Points:</th>"+Complexity.all.sort_by{|c| c.points}
 .map{|c| ["<tr><td>", c.code,"</td><td>",c.planned_duration_min,"</td><td>",c.planned_duration_max,"</td><td>",c.points,"</td></tr>"]}.join+"</table>" %>
     <%= f.association :end_complexity, :as => :radio_buttons, :collection => Complexity.all(:order => 'points'), :input_html => { :title =>  title, :rel => 'tooltip', "data-placement" => 'right' } %>

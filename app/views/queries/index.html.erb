@@ -41,6 +41,8 @@
     <th>Estimated sum hours max</th>
   </tr>
   
+  <%= puts "AAAAAAAAAAAAAAAAAAAAAAAAAAA #{@tasks.collect{|t| t.user}.uniq.compact.map{|u| u.name}} AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" %>
+  
   <% @tasks.collect{|t| t.user}.uniq.compact.each do |u| -%>
     <tr>
       <td class="avatar_name"><%= image_tag avatar_url(u,40) %> <br/>

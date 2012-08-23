@@ -33,7 +33,8 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    @task = Task.new
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -49,7 +50,8 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(params[:task])
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.new(params[:task])
 
     respond_to do |format|
       if @task.save

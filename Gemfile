@@ -34,7 +34,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier'
-  gem 'bootstrap-sass'
+  #gem 'bootstrap-sass'
 end
 
 gem 'jquery-rails'

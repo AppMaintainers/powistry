@@ -11,8 +11,6 @@ Powistry::Application.routes.draw do
   
   devise_for :users
 
-  resources :tasks 
- 
   resources :complexities
 
   resources :users
@@ -20,6 +18,8 @@ Powistry::Application.routes.draw do
   resources :projects do
     resources :tasks
   end
+  
+  resources :tasks
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -6,19 +6,14 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Oregano' rel='stylesheet' type='text/css'>
-    <script src="/assets/jquery-ui.js" type="text/javascript"></script>
-    <script src="/assets/bootstrap-tooltip.js" type="text/javascript"></script>
-    <script>
-      $(function(){
-        $("[rel=tooltip]").tooltip();
-      });
-    </script>
+    
+    
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body>
-    <header class="navbar navbar-fixed-top">
+    <header class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <%= link_to "Powistry", root_path, id: "logo" %>
@@ -28,7 +23,6 @@
                 <li><%= link_to "Home",    root_path %></li>
                 <li><%= link_to "My Projects", projects_path %></li>
                 <li><%= link_to "My Estimations", estimations_path %></li>
-                <li><%= link_to "All Tasks",    tasks_path %></li>
                 <li><%= link_to "Queries", queries_index_path %></li>
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -38,6 +32,9 @@
                   <ul class="dropdown-menu">
                     <li><%= link_to "My profile", user_path(current_user) %></li>
                     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
+                    <% if current_user.admin? -%>
+                      <li><%= link_to "Admin interface", rails_admin_path %></li>
+                    <% end -%>
                   </ul>
                 </li>
               <% else %>

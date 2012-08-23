@@ -1,30 +1,17 @@
-<h1>Listing projects</h1>
+<h1>My Projects</h1>
 
 <table class="table table-striped">
   <tr>
     <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Tasks</th>
     <th></th>
   </tr>
 
 <% @projects.each do |project| %>
-  <tr>
+  <tr class="success">
     <td><%= project.name %></td>
     <td><%= link_to 'Show tasks', project_tasks_path(project) %></td>
-    <td><%= link_to 'Show', project, class: "btn"  %></td>
-    <% if can? :update, @project %>
-      <td><%= link_to 'Edit', edit_project_path(project), class: "btn"  %></td>
-    <% end %>
-    <% if can? :destroy, @project %>
-      <td><%= link_to 'Destroy', project, class: "btn",  method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
+    <td><%= link_to 'New task', new_project_task_path(project), class: "btn"  %></td>
   </tr> 
 <% end %>
 </table>
-
-<br />
-<% if can? :create, @project %>
-  <%= link_to 'New Project', new_project_path, class: "btn" %>
-<% end %>
