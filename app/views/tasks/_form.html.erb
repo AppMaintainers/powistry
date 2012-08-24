@@ -3,10 +3,29 @@
 
   <div class="form-inputs">
     
+    <h3><%= link_to @project.name, project_tasks_path(@project) %></h3>
+    
     <%#= f.association :end_complexity, :as => :radio_buttons, :collection => Complexity.all(:order => 'points'), :input_html => { :title => complexity_tooltip, :rel => 'tooltip', "data-placement" => 'right' } %>
-    <%= f.input :name %>
-    <%= f.input :description, :as => :text, :input_html => {:rows => 10} %>
-    <%= f.input :url %>
+    <div class="important_info">
+      <%= f.input :name %>
+      <%= f.input :description, :as => :text, :input_html => {:rows => 10} %>
+      <%= f.input :url %>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Complexity</label>
+      <label class="radio inline">
+        <%= radio_button_tag "complexity_id", 0, (true if est_complexity_id(@task) == 0), :disabled => (true if est_complexity_id(@task) != 0) %><%= "Unknown" %>
+      </label>
+      <% Complexity.all.sort_by{|c| c.points}.each do |c| -%>
+        <label class="radio inline">
+        <%= radio_button_tag "complexity_id", c.id, (true if est_complexity_id(@task) == c.id), :title => complexity_tooltip(c), :rel => 'tooltip', "data-placement" => 'bottom' %><%= c.code -%>
+        </label>
+      <% end -%>
+    </div>
+    
+    
+    <%= f.association :user %>
+    
     <%#= f.input :start_date, :as => :datepicker %>
     <%#= f.input :end_date, :as => :datepicker %>
     <%#= f.input :invoice_number %>
@@ -14,6 +33,11 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%#= f.button :submit %>
+    <%= f.submit 'Save', class: "btn" %>
+    <%= link_to 'Back', project_tasks_path, class: "btn" %>
+    <% if @task.new_record? -%>
+      <%= f.submit 'Save & New', class: "btn" %>
+    <% end -%>
   </div>
 <% end %>

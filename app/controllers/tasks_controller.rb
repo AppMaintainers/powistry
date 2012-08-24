@@ -38,9 +38,19 @@ class TasksController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @task = @project.tasks.new(params[:task])
-
+    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAA #{params[:submit]} AAAAAAAAAAAAAAAAAAAAAAAAAAAa"
+        
     respond_to do |format|
       if @task.save
+        unless params[:complexity_id]==0
+          est = Estimation.find_or_create_by_user_id_and_task_id(current_user.id, @task.id)
+          est.complexity_id = params[:complexity_id]
+          est.save
+        end
+        
+        if params[:commit] == "Save & New"
+          format.html { redirect_to new_project_task_path(@project), notice: 'Task was successfully created.' }         
+        end
         format.html { redirect_to project_tasks_url, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
@@ -58,6 +68,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
+        unless params[:complexity_id]==0
+          est = Estimation.find_or_create_by_user_id_and_task_id(current_user.id, @task.id)
+          est.complexity_id = params[:complexity_id]
+          est.save
+        end
         format.html { redirect_to project_tasks_url, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
