@@ -2,14 +2,15 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :user %>
-    <%= f.association :end_complexity, :as => :radio_buttons, :collection => Complexity.all(:order => 'points'), :input_html => { :title => complexity_tooltip, :rel => 'tooltip', "data-placement" => 'right' } %>
+    
+    <%#= f.association :end_complexity, :as => :radio_buttons, :collection => Complexity.all(:order => 'points'), :input_html => { :title => complexity_tooltip, :rel => 'tooltip', "data-placement" => 'right' } %>
     <%= f.input :name %>
     <%= f.input :description, :as => :text, :input_html => {:rows => 10} %>
-    <%= f.input :start_date, :as => :datepicker %>
-    <%= f.input :end_date, :as => :datepicker %>
-    <%= f.input :invoice_number %>
-    <%= f.input :invested_hours %>
+    <%= f.input :url %>
+    <%#= f.input :start_date, :as => :datepicker %>
+    <%#= f.input :end_date, :as => :datepicker %>
+    <%#= f.input :invoice_number %>
+    <%#= f.input :invested_hours %>
   </div>
 
   <div class="form-actions">

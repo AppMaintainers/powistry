@@ -9,10 +9,11 @@
   <tr>
     <th>User</th>
     <th>Project</th>
-    <th>Average Complexity</th>
-    <th>End complexity</th>
+    <th>Final complexity</th>
+    <th>Corrected complexity</th>
     <th>Name</th>
     <th>Description</th>
+    <th>Url</th>
     <th>Start date</th>
     <th>End date</th>
     <th>Invoice number</th>
@@ -32,9 +33,14 @@
     <% end -%>
     <td><%= task.project.name %></td>
     <td><%= get_average_points(task.estimations)%></td>
-    <td><%= task.end_complexity.try(:code) %></td>
+    <td><%= task.corrected_complexity.try %></td>
     <td><%= task.name %></td>
     <td><%= task.description[(0..15)] %><%= content_tag(:span, ' ...', {:title => task.description, :rel => 'tooltip', "data-placement" => 'bottom'}) if task.description.length > 15 %> </td>
+    <% unless task.url.nil? -%>
+      <td><%= link_to image_tag("#{root_url}url-icon.png"), task.url, :target => "_blank" %></td>
+    <% else -%>
+      <td></td>
+    <% end -%>
     <td><%= task.start_date %></td>
     <td><%= task.end_date %></td>
     <td><%= task.invoice_number %></td>
