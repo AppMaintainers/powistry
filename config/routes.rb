@@ -16,7 +16,7 @@ Powistry::Application.routes.draw do
   resources :users
 
   resources :projects do
-    resources :tasks
+    resources :tasks 
   end
   
   # The priority is based upon order of creation:

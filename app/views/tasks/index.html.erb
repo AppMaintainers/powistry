@@ -40,6 +40,14 @@
     <td><%= task.invoice_number %></td>
     <td><%= task.invested_hours %></td>
     <td><%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn" %></td>
+    <% if task.start_date.nil? -%>
+      <td><%= link_to "Start", project_task_path(task.project, task, :task => { :start_date => Date.today}) , :method => 'put', class: "btn" %></td>
+    <% elsif task.end_date.nil? -%>
+      <td><%= link_to "Close", project_task_path(task.project, task, :task => { :end_date => Date.today}) , :method => 'put', class: "btn" %></td>
+    <% end -%>
+    <% if task.end_date.nil? && task.estimations.find_by_user_id(current_user.id).complexity.nil? -%>
+      <td><%= link_to 'Estimate', edit_project_task_path(task.project, task), class: "btn" %></td>
+    <% end -%>
   </tr>
 <% end %>
 </table>

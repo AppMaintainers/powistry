@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
   belongs_to :end_complexity, :class_name => "Complexity"
   has_many :estimations, :dependent => :destroy
   
-  validates :project, :name, :start_date, :presence => true
+  validates :project, :name, :presence => true
   validates :invested_hours, :numericality => true, :allow_nil => true
   
   attr_accessible :user_id, :project_id, :complexity_id, :complexity,
