@@ -8,7 +8,7 @@
   </tr>
 
 <% @projects.each do |project| %>
-  <tr class="success">
+  <tr>
     <td><%= project.name %></td>
     <td><%= link_to 'Show tasks', project_tasks_path(project) %></td>
     <td><%= link_to 'New task', new_project_task_path(project), class: "btn"  %></td>

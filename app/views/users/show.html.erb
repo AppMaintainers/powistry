@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p class="avatar_name">
   <%= image_tag avatar_url(@user,80) %> <br/>
   <%= @user.name.split.first %>
@@ -22,5 +20,4 @@
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %> |
 <%= link_to 'Set avatar', "http://gravatar.com" %>

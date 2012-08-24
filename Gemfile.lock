@@ -200,7 +200,6 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bootstrap-sass
   cancan
   capybara
   coffee-rails

@@ -1,5 +1,10 @@
 <h1>Listing tasks</h1>
 
+<%= link_to 'New Task', new_project_task_path(@project), class: "btn" %>
+
+<br />
+<br />
+
 <table class = "table table-striped">
   <tr>
     <th>User</th>
@@ -29,21 +34,16 @@
     <td><%= get_average_points(task.estimations)%></td>
     <td><%= task.end_complexity.try(:code) %></td>
     <td><%= task.name %></td>
-    <td><%= task.description %></td>
+    <td><%= task.description[(0..15)] %><%= content_tag(:span, ' ...', {:title => task.description, :rel => 'tooltip', "data-placement" => 'bottom'}) if task.description.length > 15 %> </td>
     <td><%= task.start_date %></td>
     <td><%= task.end_date %></td>
     <td><%= task.invoice_number %></td>
     <td><%= task.invested_hours %></td>
-    <td><%= link_to 'Show', task, class: "btn" %></td>
-    <td><%= link_to 'Edit', edit_task_path(task), class: "btn" %></td>
-    <% if can? :destroy, @task %>
-      <td><%= link_to 'Destroy', task, class: "btn", method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
+    <td><%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn" %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%#= link_to 'New Task', new_task_path(), class: "btn" %>
 <%= link_to 'New Task', new_project_task_path(@project), class: "btn" %>

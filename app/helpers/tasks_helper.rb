@@ -1,5 +1,10 @@
 module TasksHelper
 
+  def complexity_tooltip
+  "<table><tr><th>Complexity:</th><th>Planned duration min:</th><th>Planned duration max:</th><th>Points:</th>"+Complexity.all.sort_by{|c| c.points}
+.map{|c| ["<tr><td>", c.code,"</td><td>",c.planned_duration_min,"</td><td>",c.planned_duration_max,"</td><td>",c.points,"</td></tr>"]}.join+"</table>"
+  end
+
   def get_average_points(estimations)
     if estimations.any? {|est| est.complexity.nil?}
       return nil
