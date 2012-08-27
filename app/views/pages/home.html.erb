@@ -1,19 +1,106 @@
-<div class="center hero-unit">
-  <h1>Powistry</h1>
-  <p>Welcome to the Powistry! This app lets you easily register your team's performance and efficiency.</p>
-  <% if !current_user %>
+<% if !current_user %>
+  <div class="center hero-unit">
+    <h1>Powistry</h1>
+    <p>Welcome to the Powistry! This app lets you easily register your team's performance and efficiency.</p>
     <%= link_to "Sign up", new_user_registration_path, class: "btn btn-large btn-primary" %> or 
     <%= link_to "Sign in", new_user_session_path, class: "btn btn-large btn-primary" %>    
-  <% elsif current_user.estimations.map{|e| e.complexity}.include?(nil) %>
+  </div>
+<% else %>
+  <% if current_user.estimations.map{|e| e.complexity}.include?(nil) -%>
     <div class="alert alert-info">
       You have unfilled estimations on the following tasks:
       <% current_user.estimations.each do |est| %>
         <% if est.complexity.nil? %>
-          <%= est.task.name %>
+          <%= link_to est.task.name, edit_project_task_path(est.task.project, est.task) %>
         <% end %>
       <% end %>
     </div>
-    <%= link_to "OK. I'll do it!", estimations_path, class: "btn pull-right" %>
-  <% end %>
-  <p><%= Date.today %></p>
-</div>
+  <% end -%>
+  <h3>Tasks per users</h3>
+  <% User.all.each do |u| -%>
+    <div class="container-fluid">
+      <div class="important_info">
+        <div class="row-fluid">
+        <div class="span2 avatar_name">
+          <%= image_tag avatar_url(u,80) %> <br/>
+          <%= u.name.split.first %></td>
+        </div>
+        <div class="span10">
+          <table class = "table table-bordered">
+            <tr>
+              <th style = "width: 80%">Name</th>
+              <th style = "width: 20%">Url</th>
+            </tr>
+          <% u.tasks.opened(Date.today).each do |t| %>
+            <tr class="success">
+              <td><%= t.project.name %>/<%= link_to t.name, edit_project_task_path(t.project,t) %></td>
+              <% unless t.url.nil? || t.url.empty? -%>
+                <td><%= link_to image_tag("#{root_url}url-icon.png"), t.url, :target => "_blank" %></td>
+              <% else -%>
+                <td></td>
+              <% end -%>
+            </tr>
+          <% end -%>
+            
+          <% u.tasks.not_yet_opened.each do |t| %>
+            <tr class="error">
+              <td><%= t.project.name %>/<%= link_to t.name, edit_project_task_path(t.project,t) %></td>
+              <% unless t.url.nil? || t.url.empty? -%>
+                <td><%= link_to image_tag("#{root_url}url-icon.png"), t.url, :target => "_blank" %></td>
+              <% else -%>
+                <td></td>
+              <% end -%>
+             </tr>
+          <% end -%>
+          </table>
+        </div>
+      </div>
+      </div>
+      
+    </div>
+  <% end -%>
+  
+  <h3>Tasks per projects</h3>
+  <% Project.all.each do |p| -%>
+    <div class="container-fluid">
+      <div class="important_info">
+        <div class="row-fluid">
+        <div class="span2">
+          <h3><%= link_to p.name, project_tasks_path(p) %></h3>
+        </div>
+        <div class="span10">
+          <table class = "table table-bordered">
+            <tr>
+              <th style = "width: 80%">Task Name</th>
+              <th style = "width: 20%">Url</th>
+            </tr>
+          <% p.tasks.opened(Date.today).each do |t| %>
+            <tr class="success">
+              <td><%= link_to t.name, edit_project_task_path(p,t) %></td>
+              <% unless t.url.nil? || t.url.empty? -%>
+                <td><%= link_to image_tag("#{root_url}url-icon.png"), t.url, :target => "_blank" %></td>
+              <% else -%>
+                <td></td>
+              <% end -%>
+            </tr>
+          <% end -%>
+            
+          <% p.tasks.not_yet_opened.each do |t| %>
+            <tr class="error">
+              <td><%= link_to t.name, edit_project_task_path(p,t) %></td>
+              <% unless t.url.nil? || t.url.empty? -%>
+                <td><%= link_to image_tag("#{root_url}url-icon.png"), t.url, :target => "_blank" %></td>
+              <% else -%>
+                <td></td>
+              <% end -%>
+             </tr>
+          <% end -%>
+          </table>
+        </div>
+      </div>
+      </div>
+      
+    </div>
+  <% end -%>
+<% end %>
+

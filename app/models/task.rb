@@ -7,7 +7,8 @@ class Task < ActiveRecord::Base
   validates :invested_hours, :numericality => true, :allow_nil => true
   
   attr_accessible :name, :description, :url, :invoice_number,
-   :start_date, :end_date, :invested_hours, :id, :user_id, :project_id
+   :start_date, :end_date, :invested_hours, :id, :user_id, :project_id, :final_complexity,
+   :corrected_complexity
    
   after_create :create_estimations_for_users_on_project
   
@@ -17,8 +18,7 @@ class Task < ActiveRecord::Base
     end
   end
   
-  scope :after_date, lambda{|date| where("start_date >= ?", date)}
-  scope :before_date, lambda{|date| where("end_date <= ?", date)}
-  scope :with_invoice_number, lambda{|invnum| where("invoice_number = ?", invnum)}
+  scope :opened, lambda{|date| where("start_date <= ? AND end_date IS NULL", date)}
+  scope :not_yet_opened, lambda{|| where("start_date IS NULL")}
    
 end

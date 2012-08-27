@@ -32,7 +32,7 @@
       <td></td>
     <% end -%>
     <td><%= task.project.name %></td>
-    <td><%= get_average_points(task.estimations)%></td>
+    <td><%= task.final_complexity %></td>
     <td><%= task.corrected_complexity.try %></td>
     <td><%= task.name %></td>
     <td><%= task.description[(0..15)] %><%= content_tag(:span, ' ...', {:title => task.description, :rel => 'tooltip', "data-placement" => 'bottom'}) if task.description.length > 15 %> </td>
@@ -47,7 +47,7 @@
     <td><%= task.invested_hours %></td>
     <td><%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn" %></td>
     <% if task.start_date.nil? -%>
-      <td><%= link_to "Start", project_task_path(task.project, task, :task => { :start_date => Date.today}) , :method => 'put', class: "btn" %></td>
+      <td><%= link_to "Start", project_task_path(task.project, task, :task => { :start_date => Date.today, :user_id => current_user }) , :method => 'put', class: "btn" %></td>
     <% elsif task.end_date.nil? -%>
       <td><%= link_to "Close", project_task_path(task.project, task, :task => { :end_date => Date.today}) , :method => 'put', class: "btn" %></td>
     <% end -%>

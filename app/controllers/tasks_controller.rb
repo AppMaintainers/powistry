@@ -38,11 +38,10 @@ class TasksController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @task = @project.tasks.new(params[:task])
-    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAA #{params[:submit]} AAAAAAAAAAAAAAAAAAAAAAAAAAAa"
-        
+            
     respond_to do |format|
       if @task.save
-        unless params[:complexity_id]==0
+        unless params[:complexity_id] == 0
           est = Estimation.find_or_create_by_user_id_and_task_id(current_user.id, @task.id)
           est.complexity_id = params[:complexity_id]
           est.save
