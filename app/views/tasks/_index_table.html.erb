@@ -1,0 +1,28 @@
+<tr class = <%= table_color %> >
+  <% unless task.user.nil? -%>
+      <td class="avatar_name"><%= image_tag avatar_url(task.user,40) %> <br/>
+      <%= task.user.name.split.first %></td>
+    <% else -%>
+      <td></td>
+    <% end -%>
+    <td><%= task.name %></td>
+    <td><%= task.description[(0..15)] %><%= content_tag(:span, ' ...', {:title => task.description, :rel => 'tooltip', "data-placement" => 'bottom'}) if task.description.length > 15 %> </td>
+    <% unless task.url.nil? || task.url.empty? -%>
+      <td><%= link_to image_tag("#{root_url}url-icon.png"), task.url, :target => "_blank" %></td>
+    <% else -%>
+      <td></td>
+    <% end -%>
+    <td><%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn" %></td>
+    <% if task.start_date.nil? -%>
+      <td><%= link_to "Start", project_task_path(task.project, task, :task => { :start_date => Date.today, :user_id => current_user }) , :method => 'put', class: "btn" %></td>
+    <% elsif task.end_date.nil? -%>
+      <td><%= link_to "Close", project_task_path(task.project, task, :task => { :end_date => Date.today}) , :method => 'put', class: "btn" %></td>
+    <% else -%>
+      <td></td>
+    <% end -%>
+    <% if task.end_date.nil? && task.estimations.find_by_user_id(current_user.id).complexity.nil? -%>
+      <td><%= link_to 'Estimate', edit_project_task_path(task.project, task), class: "btn" %></td>
+    <% else -%>
+      <td></td> 
+    <% end -%>
+</tr>

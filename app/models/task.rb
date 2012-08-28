@@ -11,6 +11,7 @@ class Task < ActiveRecord::Base
    :corrected_complexity
    
   after_create :create_estimations_for_users_on_project
+  after_update :set_final_complexity_if_closed
   
   def create_estimations_for_users_on_project
     self.project.users.each do |user|
@@ -18,7 +19,20 @@ class Task < ActiveRecord::Base
     end
   end
   
+  def set_final_complexity_if_closed
+    unless self.end_date.nil?
+      if self.end_date <= Date.today && self.final_complexity.nil?
+        unless self.estimations.all?{|e| e.complexity.nil?}
+          pts = self.estimations.where("complexity_id IS NOT NULL").map{|e| e.complexity.points}
+          self.final_complexity = (pts.sum.to_f/pts.size*100).round.to_f/100
+          self.save
+        end  
+      end
+    end
+  end
+  
   scope :opened, lambda{|date| where("start_date <= ? AND end_date IS NULL", date)}
   scope :not_yet_opened, lambda{|| where("start_date IS NULL")}
+  scope :closed, lambda{|date| where("end_date <= ?", date)}
    
 end
