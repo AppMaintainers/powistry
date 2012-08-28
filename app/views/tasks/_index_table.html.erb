@@ -20,7 +20,7 @@
     <% else -%>
       <td></td>
     <% end -%>
-    <% if task.end_date.nil? && task.estimations.find_by_user_id(current_user.id).complexity.nil? -%>
+    <% if task.end_date.nil? && task.estimations.find_by_user_id(current_user.id).try(:complexity).nil? -%>
       <td><%= link_to 'Estimate', edit_project_task_path(task.project, task), class: "btn" %></td>
     <% else -%>
       <td></td> 

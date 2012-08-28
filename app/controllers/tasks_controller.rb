@@ -68,7 +68,7 @@ class TasksController < ApplicationController
     respond_to do |format|
     
       if @task.update_attributes(params[:task])
-        unless params[:complexity_id] == 0
+        unless (params[:complexity_id] == 0 || params[:complexity_id].nil?)
           est = Estimation.find_or_create_by_user_id_and_task_id(current_user.id, @task.id)
           est.complexity_id = params[:complexity_id]
           est.save

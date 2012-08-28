@@ -41,8 +41,6 @@
     <th>Estimated sum hours max</th>
   </tr>
   
-  <%= puts "AAAAAAAAAAAAAAAAAAAAAAAAAAA #{@tasks.collect{|t| t.user}.uniq.compact.map{|u| u.name}} AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" %>
-  
   <% @tasks.collect{|t| t.user}.uniq.compact.each do |u| -%>
     <tr>
       <td class="avatar_name"><%= image_tag avatar_url(u,40) %> <br/>
@@ -62,10 +60,11 @@
   <tr>
     <th>User</th>
     <th>Project</th>
-    <th>Average Complexity</th>
-    <th>End complexity</th>
+    <th>Final Complexity</th>
+    <th>Corrected complexity</th>
     <th>Name</th>
     <th>Description</th>
+    <th>Url</th>
     <th>Start date</th>
     <th>End date</th>
     <th>Invoice number</th>
@@ -76,15 +75,16 @@
   <tr>
     <% unless task.user.nil? -%>
       <td class="avatar_name"><%= image_tag avatar_url(task.user,40) %> <br/>
-      <%= link_to task.user.name.split.first, user_path(task.user) %></td>
+      <%= task.user.name.split.first %></td>
     <% else -%>
       <td></td>
     <% end -%>
     <td><%= link_to task.project.name, project_path(task.project) %></td>
-    <td><%= get_average_points(task.estimations)%></td>
-    <td><%= task.end_complexity.try(:code) %></td>
-    <td><%= link_to task.name, task_path(task) %></td>
+    <td><%= task.final_complexity %></td>
+    <td><%= task.corrected_complexity %></td>
+    <td><%= link_to task.name, project_task_path(task.project, task) %></td>
     <td><%= task.description %></td>
+    <td><%= task.url %></td>
     <td><%= task.start_date %></td>
     <td><%= task.end_date %></td>
     <td><%= task.invoice_number %></td>
