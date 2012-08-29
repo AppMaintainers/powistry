@@ -1,0 +1,3 @@
+var tasks_near_complexity = $('<%= j(render(:partial => 'tasks_near_complexity', :locals => { :task => @task, :complexity => @complexity } )).html_safe %>');
+
+$('#tasks_near_complexity').html(tasks_near_complexity);

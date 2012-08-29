@@ -1,0 +1,21 @@
+<table class="table table-bordered">
+  <tr>
+    <th>Task name</th>
+    <th>Description</th>
+    <th>Url</th>
+    <th>Final/Corrected Complexity</th>
+  </tr>
+  
+  <% task.get_tasks_near_complexity(complexity, 10).each do |t| -%>
+    <tr>
+      <td><%= link_to t.name, edit_project_task_path(t.project, t) %></td>
+      <td><%= t.description[(0..15)] %><%= content_tag(:span, ' ...', {:title => t.description, :rel => 'tooltip', "data-placement" => 'bottom'}) if t.description.length > 15 %> </td>
+      <% unless t.url.nil? || t.url.empty? -%>
+        <td><%= link_to image_tag("#{root_url}url-icon.png"), t.url, :target => "_blank" %></td>
+      <% else -%>
+        <td></td>
+      <% end -%>
+      <td><%= t.get_complexity %></td>
+    </tr>
+  <% end -%>  
+</table>

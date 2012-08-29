@@ -11,7 +11,7 @@
           
           <div class="important_info">
             <%= f.input :name %>
-            <%= f.input :description, :as => :text, :input_html => {:rows => 10} %>
+            <%= f.input :description, :as => :text, :input_html => {:rows => 5} %>
             <%= f.input :url %>
           </div>
           <% if @project.users.include?(current_user) -%>
@@ -22,7 +22,7 @@
                 </label>
                 <% Complexity.all.sort_by{|c| c.points}.each do |c| -%>
                   <label class="radio inline">
-                    <%= radio_button_tag "complexity_id", c.id, (true if est_complexity_id(@task) == c.id), :title => complexity_tooltip(c), :rel => 'tooltip', "data-placement" => 'bottom', :onchange => "" %><%= c.code -%>
+                    <%= radio_button_tag "complexity_id", c.id, (true if est_complexity_id(@task) == c.id), :title => complexity_tooltip(c), :rel => 'tooltip', "data-placement" => 'bottom', "data-remote" => true %><%= c.code -%>
                   </label>
                 <% end -%>
             </div>
@@ -40,31 +40,44 @@
         </div>
       <% end %>
     </div>
-    
-    <div class="span6">
-      <table class="table table-bordered">
-      <h3>Additional info</h3>
-        <tr>
-          <th style = "width: 70%">User</th><td style = "width: 30%"><%= @task.user.try(:name) %></td>
-        </tr>
-        <tr>
-          <th>Final Complexity</th><td><%= @task.final_complexity %></td>
-        </tr>
-        <tr>
-          <th>Corrected Complexity</th><td><%= @task.corrected_complexity %></td>
-        </tr>
-        <tr>
-          <th>Start Date</th><td><%= @task.start_date %></td>
-        </tr>
-        <tr>
-          <th>End Date</th><td><%= @task.end_date %></td>
-        </tr>
-        <tr>
-          <th>Invested hours</th><td><%= @task.invested_hours %></td>
-        </tr>
-      </table>
+    <div class="span8">
+      <div class="span10">
+        <table class="table table-bordered">
+        <h3>Additional info</h3>
+          <tr>
+            <th style = "width: 70%">User</th><td style = "width: 30%"><%= @task.user.try(:name) %></td>
+          </tr>
+          <tr>
+            <th>Final Complexity</th><td><%= @task.final_complexity %></td>
+          </tr>
+          <tr>
+            <th>Corrected Complexity</th><td><%= @task.corrected_complexity %></td>
+          </tr>
+          <tr>
+            <th>Start Date</th><td><%= @task.start_date %></td>
+          </tr>
+          <tr>
+            <th>End Date</th><td><%= @task.end_date %></td>
+          </tr>
+          <tr>
+            <th>Invested hours</th><td><%= @task.invested_hours %></td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class = "span12">
+        <h3>Tasks with similarcomplexities</h3>
+        <div id = "tasks_near_complexity">
+          <% unless est_complexity_id(@task) == 0 -%>
+            <%= render(:partial => 'tasks_near_complexity', :locals => { :task => @task, :complexity => Complexity.find(est_complexity_id(@task)) } ) %>
+          <% end -%>
+        </div>
+      </div>
       
     </div>
+    
+    
   </div>
+  
 </div>
 

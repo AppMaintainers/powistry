@@ -31,6 +31,30 @@ class Task < ActiveRecord::Base
     end
   end
   
+  # Determines the range of final complexity values that corresponds to a specific complexity
+  # Example M => (5..11)
+  def get_range(complexity)
+    comp_range = {}
+    complexities = Complexity.all.sort_by{|c| c.points}
+    if complexity == complexities.first
+      comp_range = (complexities.first.points..((complexities.first.points + complexities.second.points)/2))
+    elsif complexity == complexities.last
+      comp_range = (((complexities.last.points + complexities[-2].points)/2)..complexities.last.points) 
+    else
+      idx = complexities.find_index(complexity)
+      comp_range = (((complexities[idx-1].points + complexities[idx].points)/2)..((complexities[idx].points + complexities[idx+1].points)/2)) 
+    end
+    return comp_range
+  end
+  
+  def get_complexity
+    self.corrected_complexity.nil? ? self.final_complexity : self.corrected_complexity
+  end
+  
+  def get_tasks_near_complexity(complexity, size)
+    Task.all.select{|t| t.get_complexity.in? t.get_range(complexity)}[(0..(size-1))]
+  end
+     
   scope :opened, lambda{|date| where("start_date <= ? AND end_date IS NULL", date)}
   scope :not_yet_opened, lambda{|| where("start_date IS NULL")}
   scope :closed, lambda{|date| where("end_date <= ?", date)}

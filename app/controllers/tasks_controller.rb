@@ -1,7 +1,9 @@
 class TasksController < ApplicationController
 
   before_filter :authenticate_user!
-
+  
+  respond_to :js, :html
+  
   # GET /tasks
   # GET /tasks.json
   def index
@@ -20,10 +22,9 @@ class TasksController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @task = @project.tasks.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @task }
+    unless params[:complexity_id].nil?
+      @complexity = Complexity.find(params[:complexity_id])
+      respond_with(@task,@complexity)
     end
   end
 
@@ -31,6 +32,10 @@ class TasksController < ApplicationController
   def edit
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
+    unless params[:complexity_id].nil?
+      @complexity = Complexity.find(params[:complexity_id])
+      respond_with(@task,@complexity)
+    end
   end
 
   # POST /tasks
@@ -81,5 +86,5 @@ class TasksController < ApplicationController
       end
     end
   end
-    
+       
 end
