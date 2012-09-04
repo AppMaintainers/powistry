@@ -2,7 +2,9 @@
   <div class="center hero-unit">
     <h1>Powistry</h1>
     <p>Welcome to the Powistry! This app lets you easily register your team's performance and efficiency.</p>
-    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-large btn-primary" %> or 
+    <% unless Rails.env.production? -%>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-large btn-primary" %> or
+    <% end -%>
     <%= link_to "Sign in", new_user_session_path, class: "btn btn-large btn-primary" %>    
   </div>
 <% else %>

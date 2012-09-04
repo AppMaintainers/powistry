@@ -66,7 +66,7 @@
       </div>
       
       <div class = "span12">
-        <h3>Tasks with similarcomplexities</h3>
+        <h3>Tasks with similar complexities</h3>
         <div id = "tasks_near_complexity">
           <% unless est_complexity_id(@task) == 0 -%>
             <%= render(:partial => 'tasks_near_complexity', :locals => { :task => @task, :complexity => Complexity.find(est_complexity_id(@task)) } ) %>
