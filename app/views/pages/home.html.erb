@@ -35,7 +35,7 @@
             </tr>
           <% u.tasks.opened(Date.today).each do |t| %>
             <tr class="success">
-              <td><%= t.project.name %>/<%= link_to t.name, edit_project_task_path(t.project,t) %></td>
+              <td><%= link_to t.project.name, project_tasks_path(t.project) %>/<%= link_to t.name, edit_project_task_path(t.project,t) %></td>
               <% unless t.url.nil? || t.url.empty? -%>
                 <td><%= link_to image_tag("#{root_url}url-icon.png"), t.url, :target => "_blank" %></td>
               <% else -%>
@@ -46,7 +46,7 @@
             
           <% u.tasks.not_yet_opened.each do |t| %>
             <tr class="error">
-              <td><%= t.project.name %>/<%= link_to t.name, edit_project_task_path(t.project,t) %></td>
+              <td><%= link_to t.project.name, project_tasks_path(t.project) %>/<%= link_to t.name, edit_project_task_path(t.project,t) %></td>
               <% unless t.url.nil? || t.url.empty? -%>
                 <td><%= link_to image_tag("#{root_url}url-icon.png"), t.url, :target => "_blank" %></td>
               <% else -%>
