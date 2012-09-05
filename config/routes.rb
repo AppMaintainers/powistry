@@ -1,4 +1,6 @@
 Powistry::Application.routes.draw do
+
+
   get "queries/index"
 
   get "queries/search"
@@ -13,7 +15,9 @@ Powistry::Application.routes.draw do
 
   resources :complexities
 
-  resources :users
+  resources :users do
+    resources :bookmarks
+  end
 
   resources :projects do
     resources :tasks 
