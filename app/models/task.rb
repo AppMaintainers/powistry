@@ -59,4 +59,5 @@ class Task < ActiveRecord::Base
   scope :not_yet_opened, lambda{|| where("start_date IS NULL")}
   scope :closed, lambda{|date| where("end_date <= ?", date)}
 
+  scope :in_game, where("start_date IS NOT NULL and end_date IS NOT NULL").where("end_date >= ?", Time.now - 4.weeks)
 end

@@ -60,3 +60,13 @@ textarea {
   text-decoration: none;
 }
 
+/* game */
+.game > div > div {
+  float: right;
+}
+.game .score{
+  font-size: 1.1em;
+  float: right;
+  padding: .5em;
+  font-weight: bold;
+}

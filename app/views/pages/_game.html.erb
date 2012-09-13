@@ -1,0 +1,17 @@
+<h3>The GAME</h3>
+
+<div class="row game">
+  <% for user in User.all %>
+    <div class="span2">
+      <div class="score">
+        <%= user.tasks.in_game.map( &:get_complexity ).inject( 0 ) { 
+          |sum, complexity| sum + complexity 
+        }.to_i %>
+      </div>
+      <div>
+        <%= image_tag avatar_url(user,80) %><br/>
+        <%= user.name.split.first %>
+      </div>
+    </div>
+  <% end %>
+</div>

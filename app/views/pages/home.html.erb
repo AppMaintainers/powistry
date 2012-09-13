@@ -18,6 +18,9 @@
       <% end %>
     </div>
   <% end -%>
+  
+  <%= render partial: "game" %>
+  
   <h3>Tasks per users</h3>
   <% User.all.each do |u| -%>
     <div class="container-fluid">
