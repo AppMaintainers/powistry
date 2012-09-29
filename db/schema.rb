@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(:version => 20120914130843) do
 
   create_table "bookmarks", :force => true do |t|
-    t.integer   "user_id"
-    t.string    "name"
-    t.string    "location"
-    t.timestamp "created_at", :null => false
-    t.timestamp "updated_at", :null => false
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "location"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "bookmarks", ["user_id"], :name => "index_bookmarks_on_user_id"
