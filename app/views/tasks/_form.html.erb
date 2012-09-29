@@ -13,6 +13,7 @@
             <%= f.input :name %>
             <%= f.input :description, :as => :text, :input_html => {:rows => 5} %>
             <%= f.input :url %>
+            <%= f.input :priority, :label => "Priority", :collection => [["high", 3], ["normal", 2], ["low", 1]], :selected => 2 %>
           </div>
           <% if @project.users.include?(current_user) -%>
             <div class="control-group">
@@ -61,6 +62,9 @@
           </tr>
           <tr>
             <th>Invested hours</th><td><%= @task.invested_hours %></td>
+          </tr>
+          <tr>
+            <th>Priority</th><td><%= @task.priority %></td>
           </tr>
         </table>
       </div>

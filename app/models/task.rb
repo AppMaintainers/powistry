@@ -25,10 +25,11 @@ class Task < ActiveRecord::Base
 
   validates :project, :name, :presence => true
   validates :invested_hours, :numericality => true, :allow_nil => true
+  validates :priority, :numericality => { :only_integer => true }, :inclusion => 1..3
 
   attr_accessible :name, :description, :url, :invoice_number,
    :start_date, :end_date, :invested_hours, :id, :user_id, :project_id, :final_complexity,
-   :corrected_complexity
+   :corrected_complexity, :priority
 
   after_create :create_estimations_for_users_on_project
   after_update :set_final_complexity_if_closed
@@ -78,6 +79,8 @@ class Task < ActiveRecord::Base
   scope :opened, lambda{|date| where("start_date <= ? AND end_date IS NULL", date)}
   scope :not_yet_opened, lambda{|| where("start_date IS NULL")}
   scope :closed, lambda{|date| where("end_date <= ?", date)}
+  
+  default_scope order("priority DESC")
 
   scope :in_game, where("start_date IS NOT NULL and end_date IS NOT NULL").where("end_date >= ?", Time.now - 4.weeks)
 end
