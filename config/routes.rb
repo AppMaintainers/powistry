@@ -1,4 +1,8 @@
 Powistry::Application.routes.draw do
+  devise_for :users
+  
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  
   get "queries/index"
   get "queries/search"
   
@@ -10,10 +14,6 @@ Powistry::Application.routes.draw do
   resources :projects do
     resources :tasks 
   end
-  
-  devise_for :users
-  
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
   root to: 'pages#home'
 end
