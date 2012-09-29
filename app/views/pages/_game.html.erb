@@ -1,7 +1,7 @@
 <h3>The GAME</h3>
 
 <div class="row game">
-  <% for user in User.all %>
+  <% for user in @users %>
     <div class="span2">
       <div class="score">
         <%= user.tasks.in_game.map( &:get_complexity ).inject( 0 ) { 

@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
   
   validates :name, :presence => true
   before_validation :set_monogram 
+
+  default_scope order("name ASC")
     
   # sets the monogram from the name  
   def set_monogram

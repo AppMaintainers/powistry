@@ -22,7 +22,7 @@
   <%= render partial: "game" %>
   
   <h3>Tasks per users</h3>
-  <% User.all.each do |u| -%>
+  <% @users.each do |u| -%>
     <div class="container-fluid">
       <div class="important_info">
         <div class="row-fluid">
@@ -66,7 +66,7 @@
   <% end -%>
   
   <h3>Tasks per projects</h3>
-  <% Project.all.each do |p| -%>
+  <% @projects.each do |p| -%>
     <div class="container-fluid">
       <div class="important_info">
         <div class="row-fluid">
