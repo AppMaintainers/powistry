@@ -79,6 +79,8 @@ class Task < ActiveRecord::Base
   scope :opened, lambda{|date| where("start_date <= ? AND end_date IS NULL", date)}
   scope :not_yet_opened, lambda{|| where("start_date IS NULL")}
   scope :closed, lambda{|date| where("end_date <= ?", date)}
+  
+  default_scope order("priority DESC")
 
   scope :in_game, where("start_date IS NOT NULL and end_date IS NOT NULL").where("end_date >= ?", Time.now - 4.weeks)
 end
