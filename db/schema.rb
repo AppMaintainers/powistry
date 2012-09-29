@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905081024) do
+ActiveRecord::Schema.define(:version => 20120914130843) do
+
+  create_table "bookmarks", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "location"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "bookmarks", ["user_id"], :name => "index_bookmarks_on_user_id"
 
   create_table "complexities", :force => true do |t|
     t.string   "code"
@@ -69,11 +79,12 @@ ActiveRecord::Schema.define(:version => 20120905081024) do
     t.date     "end_date"
     t.string   "invoice_number"
     t.integer  "invested_hours"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.float    "final_complexity"
     t.float    "corrected_complexity"
     t.string   "url"
+    t.integer  "priority",             :default => 2
   end
 
   add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"

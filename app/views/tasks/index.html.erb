@@ -14,15 +14,16 @@
     <th></th>
     <th></th>
     <th></th>
+    <th>Priority</th>
   </tr>
 
-<% @tasks.opened(Date.today).each do |task| %>
+<% @tasks.opened(Date.today).order("priority DESC").each do |task| %>
   <%= render 'index_table', :task => task, :table_color => "success" %>
 <% end %>
-<% @tasks.not_yet_opened.each do |task| %>
+<% @tasks.not_yet_opened.order("priority DESC").each do |task| %>
   <%= render 'index_table', :task => task, :table_color => "error" %>
 <% end %>
-<% @tasks.closed(Date.today).each do |task| %>
+<% @tasks.closed(Date.today).order("priority DESC").each do |task| %>
   <%= render 'index_table', :task => task, :table_color => "" %>
 <% end %>
 

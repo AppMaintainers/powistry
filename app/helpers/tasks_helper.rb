@@ -55,5 +55,16 @@ module TasksHelper
   def user_sum_max_hours(user)
     @tasks.where("user_id = ?", user.id).map{|t| get_average_max_hours(t.estimations)}.sum
   end
+  
+  def priority_name(priority)
+    case priority
+      when 1
+        content_tag(:span, "low", :class => "label")
+      when 2
+        content_tag(:span, "normal", :class => "label label-success")
+      when 3
+        content_tag(:span, "high", :class => "label label-important")
+    end
+  end
 
 end
