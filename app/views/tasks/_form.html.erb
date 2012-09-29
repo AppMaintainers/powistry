@@ -64,7 +64,7 @@
             <th>Invested hours</th><td><%= @task.invested_hours %></td>
           </tr>
           <tr>
-            <th>Priority</th><td><%= @task.priority %></td>
+            <th>Priority</th><td><%= priority_name(@task.priority) %></td>
           </tr>
         </table>
       </div>
