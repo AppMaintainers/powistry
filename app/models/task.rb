@@ -25,10 +25,11 @@ class Task < ActiveRecord::Base
 
   validates :project, :name, :presence => true
   validates :invested_hours, :numericality => true, :allow_nil => true
+  validates :priority, :numericality => { :only_integer => true }, :inclusion => 1..3
 
   attr_accessible :name, :description, :url, :invoice_number,
    :start_date, :end_date, :invested_hours, :id, :user_id, :project_id, :final_complexity,
-   :corrected_complexity
+   :corrected_complexity, :priority
 
   after_create :create_estimations_for_users_on_project
   after_update :set_final_complexity_if_closed
