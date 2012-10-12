@@ -33,29 +33,18 @@
         <div class="span10">
           <table class = "table table-bordered">
             <tr>
-              <th style = "width: 80%">Name</th>
-              <th style = "width: 20%">Url</th>
+              <th style="width:50%">Name</th>
+              <th style="width:20%">Url</th>
+              <th style="width:10%"></th>
+              <th style="width:10%"></th>
+              <th style="width:10%"></th>
             </tr>
           <% u.tasks.opened(Date.today).each do |t| %>
-            <tr class="success">
-              <td><%= link_to t.project.name, project_tasks_path(t.project) %>/<%= link_to t.name, edit_project_task_path(t.project,t) %></td>
-              <% unless t.url.nil? || t.url.empty? -%>
-                <td><%= link_to image_tag("#{root_url}url-icon.png"), t.url, :target => "_blank" %></td>
-              <% else -%>
-                <td></td>
-              <% end -%>
-            </tr>
+            <%= render "home_table", :t => t, :table_color => "success" %>
           <% end -%>
             
           <% u.tasks.not_yet_opened.each do |t| %>
-            <tr class="error">
-              <td><%= link_to t.project.name, project_tasks_path(t.project) %>/<%= link_to t.name, edit_project_task_path(t.project,t) %></td>
-              <% unless t.url.nil? || t.url.empty? -%>
-                <td><%= link_to image_tag("#{root_url}url-icon.png"), t.url, :target => "_blank" %></td>
-              <% else -%>
-                <td></td>
-              <% end -%>
-             </tr>
+            <%= render "home_table", :t => t, :table_color => "error" %>
           <% end -%>
           </table>
         </div>
