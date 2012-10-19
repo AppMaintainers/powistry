@@ -33,7 +33,6 @@
 
         <div class="form-actions">
           <%= f.submit 'Save', class: "btn" if @project.users.include?(current_user)%>
-          <%= link_to 'Back', project_tasks_path, class: "btn" %>
           <% if @task.new_record? -%>
             <%= f.submit 'Save & New', class: "btn" if @project.users.include?(current_user) %>
           <% end -%>

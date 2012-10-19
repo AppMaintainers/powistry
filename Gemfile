@@ -17,7 +17,7 @@ group :test do
 end
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'pg', '0.12.2' 
   gem 'rspec-rails'
   gem 'rspec'
   gem 'capybara'
