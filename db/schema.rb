@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(:version => 20120914130843) do
 
   add_index "bookmarks", ["user_id"], :name => "index_bookmarks_on_user_id"
 
+  create_table "bookmarks", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "location"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "bookmarks", ["user_id"], :name => "index_bookmarks_on_user_id"
+
   create_table "complexities", :force => true do |t|
     t.string    "code"
     t.integer   "planned_duration_min"
@@ -58,14 +68,14 @@ ActiveRecord::Schema.define(:version => 20120914130843) do
   add_index "projects_users", ["user_id", "project_id"], :name => "index_projects_users_on_user_id_and_project_id", :unique => true
 
   create_table "rails_admin_histories", :force => true do |t|
-    t.text      "message"
-    t.string    "username"
-    t.integer   "item"
-    t.string    "table"
-    t.integer   "month"
-    t.integer   "year"
-    t.timestamp "created_at", :null => false
-    t.timestamp "updated_at", :null => false
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
