@@ -13,6 +13,16 @@
 
 ActiveRecord::Schema.define(:version => 20120905081024) do
 
+  create_table "bookmarks", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "location"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "bookmarks", ["user_id"], :name => "index_bookmarks_on_user_id"
+
   create_table "complexities", :force => true do |t|
     t.string   "code"
     t.integer  "planned_duration_min"
@@ -53,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20120905081024) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
