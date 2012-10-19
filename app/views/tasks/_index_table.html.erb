@@ -5,8 +5,7 @@
     <% else -%>
       <td></td>
     <% end -%>
-    <td><%= task.name %></td>
-    <td><%= task.description[(0..15)] %><%= content_tag(:span, ' ...', {:title => task.description, :rel => 'tooltip', "data-placement" => 'bottom'}) if task.description.length > 15 %> </td>
+    <td><%= content_tag(:span, task.name, {:title => task.description, :rel => 'tooltip', "data-placement" => 'right'}) %></td>
     <% unless task.url.nil? || task.url.empty? -%>
       <td><%= link_to image_tag("#{root_url}url-icon.png"), task.url, :target => "_blank" %></td>
     <% else -%>
