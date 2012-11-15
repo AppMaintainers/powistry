@@ -1,11 +1,11 @@
 module ApplicationHelper
   def avatar_url(user,size)
     if size == 80
-      default_url = "#{root_url}unknown_person_80.jpg"
+      default_url = "#{root_url}unknown_person_80.png"
     else
       default_url = "#{root_url}unknown_person.png"    
     end
     gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=#{CGI::escape(default_url)}"
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=mm" #{CGI::escape(default_url)} not working
   end 
 end
