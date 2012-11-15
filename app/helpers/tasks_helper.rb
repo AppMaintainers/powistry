@@ -9,7 +9,9 @@ module TasksHelper
   end
 
   def complexity_tooltip(c)
-  "<table><tr><th>Complexity: </th><th></th><th>Pl. dur. min: </th><th></th><th>Pl. dur. max: </th><th></th><th>Points: </th>"+["<tr><td>", c.code,"</td><td></td><td>",c.planned_duration_min,"</td><td></td><td>",c.planned_duration_max,"</td><td></td><td>",c.points,"</td></tr>"].join+"</table>"
+    "<table><tr><th>Complexity: </th><th></th><th>Pl. dur. min: </th><th></th><th>Pl. dur. max: </th><th></th><th>Points: </th>"
+    + ["<tr><td>", c.code,"</td><td></td><td>",c.planned_duration_min,"</td><td></td><td>",c.planned_duration_max,"</td><td></td><td>",c.points,"</td></tr>"].join
+    + "</table>"
   end
 
   def get_average_points(estimations)

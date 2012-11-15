@@ -13,7 +13,7 @@
             <%= f.input :name %>
             <%= f.input :description, :as => :text, :input_html => {:rows => 5} %>
             <%= f.input :url %>
-            <%= f.input :priority, :label => "Priority", :collection => [["high", 3], ["normal", 2], ["low", 1]], :selected => 2 %>
+            <%= f.input :priority, :label => "Priority", :collection => [["high", 3], ["normal", 2], ["low", 1]], :selected => @task.priority || 2 %>
           </div>
           <% if @project.users.include?(current_user) -%>
             <div class="control-group">
@@ -21,7 +21,7 @@
                 <label class="radio inline">
                   <%= radio_button_tag "complexity_id", 0, (true if est_complexity_id(@task) == 0), :disabled => (true if est_complexity_id(@task) != 0) %><%= "Unknown" %>
                 </label>
-                <% Complexity.all.sort_by{|c| c.points}.each do |c| -%>
+                <% @complexities.each do |c| -%>
                   <label class="radio inline">
                     <%= radio_button_tag "complexity_id", c.id, (true if est_complexity_id(@task) == c.id), :title => complexity_tooltip(c), :rel => 'tooltip', "data-placement" => 'bottom', "data-remote" => true %><%= c.code -%>
                   </label>
@@ -34,7 +34,6 @@
 
         <div class="form-actions">
           <%= f.submit 'Save', class: "btn" if @project.users.include?(current_user)%>
-          <%= link_to 'Back', project_tasks_path, class: "btn" %>
           <% if @task.new_record? -%>
             <%= f.submit 'Save & New', class: "btn" if @project.users.include?(current_user) %>
           <% end -%>

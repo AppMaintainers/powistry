@@ -22,9 +22,10 @@ class TasksController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @task = @project.tasks.new
-    unless params[:complexity_id].nil?
+    @complexities = Complexity.all
+    if params[:complexity_id]
       @complexity = Complexity.find(params[:complexity_id])
-      respond_with(@task,@complexity)
+      respond_with(@task, @complexity)
     end
   end
 
@@ -32,9 +33,10 @@ class TasksController < ApplicationController
   def edit
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
-    unless params[:complexity_id].nil?
+    @complexities = Complexity.all
+    if params[:complexity_id]
       @complexity = Complexity.find(params[:complexity_id])
-      respond_with(@task,@complexity)
+      respond_with(@task, @complexity)
     end
   end
 
@@ -73,7 +75,7 @@ class TasksController < ApplicationController
     respond_to do |format|
     
       if @task.update_attributes(params[:task])
-        unless (params[:complexity_id] == 0 || params[:complexity_id].nil?)
+        unless params[:complexity_id] == 0 || params[:complexity_id].nil?
           est = Estimation.find_or_create_by_user_id_and_task_id(current_user.id, @task.id)
           est.complexity_id = params[:complexity_id]
           est.save

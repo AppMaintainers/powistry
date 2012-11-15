@@ -2,12 +2,12 @@
 #
 # Table name: estimations
 #
-#  id            :integer         primary key
+#  id            :integer         not null, primary key
 #  user_id       :integer
 #  task_id       :integer
 #  complexity_id :integer
-#  created_at    :timestamp       not null
-#  updated_at    :timestamp       not null
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
 #
 
 class Estimation < ActiveRecord::Base

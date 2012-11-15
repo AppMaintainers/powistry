@@ -2,13 +2,13 @@
 #
 # Table name: complexities
 #
-#  id                   :integer         primary key
+#  id                   :integer         not null, primary key
 #  code                 :string(255)
 #  planned_duration_min :integer
 #  planned_duration_max :integer
 #  points               :integer
-#  created_at           :timestamp       not null
-#  updated_at           :timestamp       not null
+#  created_at           :datetime        not null
+#  updated_at           :datetime        not null
 #
 
 class Complexity < ActiveRecord::Base
@@ -23,5 +23,7 @@ class Complexity < ActiveRecord::Base
   def to_label 
     "#{code}"
   end
+
+  default_scope order("points ASC")
 
 end
