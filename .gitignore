@@ -17,3 +17,6 @@ doc/
 *~
 .project
 .DS_Store
+
+.idea
+.rspec
