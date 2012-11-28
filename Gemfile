@@ -40,4 +40,5 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'newrelic_rpm'
 end

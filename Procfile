@@ -1,2 +1,1 @@
-web: bundle exec rails server
-guard: bundle exec guard
+web: bundle exec unicorn_rails -p $PORT -c ./config/unicorn.rb
