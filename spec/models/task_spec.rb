@@ -11,8 +11,8 @@
 #  end_date             :date
 #  invoice_number       :string(255)
 #  invested_hours       :integer
-#  created_at           :datetime        not null
-#  updated_at           :datetime        not null
+#  created_at           :timestamp       not null
+#  updated_at           :timestamp       not null
 #  final_complexity     :float
 #  corrected_complexity :float
 #  url                  :string(255)

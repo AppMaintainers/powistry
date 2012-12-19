@@ -6,8 +6,8 @@
 #  user_id       :integer
 #  task_id       :integer
 #  complexity_id :integer
-#  created_at    :datetime        not null
-#  updated_at    :datetime        not null
+#  created_at    :timestamp       not null
+#  updated_at    :timestamp       not null
 #
 
 class Estimation < ActiveRecord::Base

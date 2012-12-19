@@ -20,7 +20,6 @@
               <% if user_signed_in? %>
                 <li><%= link_to "Home",    root_path %></li>
                 <li><%= link_to "My Projects", projects_path %></li>
-                <li><%#= link_to "Queries", queries_index_path %></li>
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     Welcome <%= current_user.name %>!

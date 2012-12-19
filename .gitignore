@@ -19,3 +19,4 @@ doc/
 .DS_Store
 /config/database.yml
 .idea/
+.rspec

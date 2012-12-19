@@ -7,8 +7,8 @@
 #  planned_duration_min :integer
 #  planned_duration_max :integer
 #  points               :integer
-#  created_at           :datetime        not null
-#  updated_at           :datetime        not null
+#  created_at           :timestamp       not null
+#  updated_at           :timestamp       not null
 #
 
 class Complexity < ActiveRecord::Base
