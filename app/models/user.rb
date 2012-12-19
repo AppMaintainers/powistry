@@ -53,4 +53,8 @@ class User < ActiveRecord::Base
   def set_monogram
     self.monogram = name.split.map{|word| word.first}.join.upcase if monogram.blank?
   end
+
+  def estimations_to_do
+    estimations.select{ |e| !e.task.closed? }.select{ |e| e.complexity.nil? }
+  end
 end

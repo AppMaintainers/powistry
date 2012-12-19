@@ -16,4 +16,9 @@ class Project < ActiveRecord::Base
   validates :name, :presence => true
 
   default_scope order("name ASC")
+
+  def user_on_project?(user)
+    users.include?(user)
+  end
+
 end

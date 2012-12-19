@@ -8,13 +8,11 @@
     <%= link_to "Sign in", new_user_session_path, class: "btn btn-large btn-primary" %>    
   </div>
 <% else %>
-  <% if current_user.estimations.map{|e| e.complexity}.include?(nil) -%>
+  <% unless current_user.estimations_to_do.count == 0 -%>
     <div class="alert alert-info">
       You have unfilled estimations on the following tasks:
-      <% current_user.estimations.each do |est| %>
-        <% if est.complexity.nil? %>
-          <%= link_to est.task.name, edit_project_task_path(est.task.project, est.task) %>
-        <% end %>
+      <% current_user.estimations_to_do.each do |est| %>
+        <%= link_to est.task.name, edit_project_task_path(est.task.project, est.task) %>
       <% end %>
     </div>
   <% end -%>
@@ -33,11 +31,12 @@
         <div class="span10">
           <table class = "table table-bordered">
             <tr>
-              <th style="width:60%">Name</th>
-              <th style="width:10%">Url</th>
+              <th style="width:50%">Name</th>
+              <th style="width:5%">Url</th>
+              <th style="width:10%">Priority</th>
               <th style="width:10%"></th>
               <th style="width:10%"></th>
-              <th style="width:10%"></th>
+              <th style="width:15%"></th>
             </tr>
           <% user.tasks.opened(Date.today).each do |task| %>
             <%= render "home_table", :task => task, :table_color => "success", :view_point => "user" %>

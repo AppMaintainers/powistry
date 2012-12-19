@@ -9,15 +9,20 @@
 	<% else -%>
 		<td></td>
 	<% end -%>
-	<td><%= link_to "Edit", edit_project_task_path(task.project,task), class: "btn" %></td>
-	<% if task.start_date.nil? -%>
+    <td><%= priority_name(task.priority) %></td>
+    <% if task.project.user_on_project?(current_user)%>
+      <td><%= link_to "Edit", edit_project_task_path(task.project,task), class: "btn" %></td>
+    <% else %>
+      <td></td>
+    <% end %>
+	<% if task.not_yet_opened? && task.project.user_on_project?(current_user) -%>
       <td><%= link_to "Start", project_task_path(task.project, task, :task => { :start_date => Date.today, :user_id => current_user }) , :method => 'put', class: "btn" %></td>
-    <% elsif task.end_date.nil? && current_user == task.user -%>
+    <% elsif task.opened? && current_user == task.user -%>
       <td><%= link_to "Close", project_task_path(task.project, task, :task => { :end_date => Date.today}) , :method => 'put', class: "btn" %></td>
     <% else -%>
       <td></td>
     <% end -%>
-    <% if task.end_date.nil? && task.estimations.find_by_user_id(current_user.id).try(:complexity).nil? -%>
+    <% if (task.not_yet_opened? || task.opened?) && task.project.user_on_project?(current_user) && task.estimations.find_by_user_id(current_user.id).try(:complexity).nil? -%>
       <td><%= link_to 'Estimate', edit_project_task_path(task.project, task), class: "btn" %></td>
     <% else -%>
       <td></td> 
